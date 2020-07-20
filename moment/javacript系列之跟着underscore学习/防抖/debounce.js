@@ -10,8 +10,9 @@
 window.onload = function () {
   let count = 0;
   let container = document.getElementById("container");
-  function getAction() {
+  function getAction(e) {
     console.log(this);
+    console.log(e);
     container.innerHTML = count++;
   }
   container.onmousemove = debounce(getAction, 1000);
@@ -23,7 +24,11 @@ window.onload = function () {
 function debounce(func, wait) {
   let timeout;
   return function () {
+    let that = this;
+    let args = arguments;
     clearTimeout(timeout);
-    timeout = setTimeout(func, wait);
+    timeout = setTimeout(function () {
+      func.apply(that, args);
+    }, wait);
   };
 }
