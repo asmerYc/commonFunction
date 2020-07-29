@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-07-27 11:02:08
- * @LastEditTime: 2020-07-27 12:15:12
+ * @LastEditTime: 2020-07-29 11:29:54
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /commonFunction/common/javacript系列之跟着underscore学习/类型判断/judgeType.js
@@ -34,3 +34,32 @@ function a() {
   console.log(111)
 }
 console.log(judgeType(a))
+
+//判断是否是空对象
+function isEmptyObject(obj) {
+  let name;
+  for(name in obj) {
+    return false;
+  }
+  return true
+}
+
+//判断是否是window对象
+function isWindow(obj) {
+  return obj  != null && obj === obj.window;
+}
+//判断是否是数组和类数组
+function isArrayLike(obj) {
+
+  // obj 必须有 length属性
+  var length = !!obj && "length" in obj && obj.length;
+  var typeRes = type(obj);
+
+  // 排除掉函数和 Window 对象
+  if (typeRes === "function" || isWindow(obj)) {
+      return false;
+  }
+
+  return typeRes === "array" || length === 0 ||
+      typeof length === "number" && length > 0 && (length - 1) in obj;
+}

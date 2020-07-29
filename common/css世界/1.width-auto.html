@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-07-28 15:36:16
+ * @LastEditTime: 2020-07-28 15:43:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit  
+ * @FilePath: /commonFunction/common/css世界/1.width-auto.html
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首选最小宽度和凹凸效果实例页面</title>
+  <style>
+    .ao,.tu {
+      display: inline-block;
+      width: 0;
+      font-size: 14px;
+      line-height: 18px;
+      margin: 35px;
+      color: #ffffff;
+    }
+    .ao:before,
+    .tu:before {
+      outline: 2px solid #cd0000;
+      font-family: Consolas,Monaco,monospace;
+    }
+    .ao:before {
+      content: 'love你love';
+    }
+    .tu {
+      direction:rtl
+    }
+    .tu:before {
+      content: '我love你';
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span class="ao"></span>
+    <span class="tu"></span>
+  </div>
+</body>
+</html>
