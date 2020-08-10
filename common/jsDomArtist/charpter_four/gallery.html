@@ -1,0 +1,29 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-08-06 17:29:28
+ * @LastEditTime: 2020-08-07 14:52:14
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /commonFunction/common/jsDomArtist/charpter_four/gallery.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./layout.css">
+  <script src="./showPic.js"></script>
+</head>
+<body>
+  <h1>Snapshots</h1>
+  <ul>
+    <li><a href="images/monday.jpeg" title="this is monday" onclick="showPic(this);return false;" >Monday</a></li>
+    <li><a href="images/tuesday.jpeg" title="this is tuesday" onclick="showPic(this);return false;">Tuesday</a></li>
+    <li><a href="images/wednesday.jpeg" title="this is wednesday" onclick="showPic(this);return false;">wednesday</a></li>
+    <li><a href="images/thursday.jpeg" title="this is thursday" onclick="showPic(this);return false;">Thursday</a></li>
+  </ul>
+  <img id="placeholder" src="images/friday.jpeg" alt="what day is it today?">
+  <p id="description">choose an image</p>
+</body>
+</html>
