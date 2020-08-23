@@ -20,14 +20,64 @@
       this.name = name;
     }
     Person.prototype = {
-      constructor: Person,
+      constructor: Person, //constructor 属性返回对创建此对象的数组函数的引用。
       showName: function () {
         console.log(this.name);
       },
     };
     let person = new Person("xiao Yuan");
-    person.showName();
+    console.log(person.name);
 
+    let cat = {
+      name: "Kitty",
+    };
+
+    //如果我们在cat上使用Person的showName方法 该怎么去实现了，我们知道的cat上是没有showName方法的
+    //那么我要使用该怎么办呢
+    console.log(person.showName.call(cat));
+    console.log(person.showName.apply(cat));
+    console.log(person.showName.bind(cat)());
+
+    //通过上述方法 我们发现虽然cat没有showName方法 但是我们借助，call,apply,bind三个方法可以改变person.showName的执行下文
+
+    //那么上边三个实现的都是同一个效果 那么我们为什么不保留其中一个呢，虽然结果一致，但是这三个方法多少还有有一点区别的
+
+    //call,apply和bind的区别
+    //...call和apply改变了函数的this上下文后便执行了此函数，而bind则是返回改变了上下文的一个函数
+
+    //call和apply的区别
+
+    //他们两之间的区别在于参数的区别
+    //call和apply的第一个参数都是要改变上下文的一个对象，而call是从第二个参数开始以参数列表的的形式展示
+    // apply则是把除了上下文的参数放在一个数组中作为第二个参数的
+
+    //  fn.call(obj,arg1,arg2,arg3....)
+    // fn.apply(obj,[arg1,arg2,arg3...])
+
+    //  常见应用场景
+    //--------求数组中的最大最小值------------
+    let arr = [34, 5, 3, 6, 54, 6, -67, 5, 7, 6, -8, 687];
+    console.log(Math.max.call(null, 4, 5, 3, 6, 54, 6, -67, 5, 7, 6, -8, 687));
+    console.log(Math.max.apply(null, arr));
+
+    //-------将维数组转化为数组---------------
+
+    //js中的伪数组(例如通过document.getElementsByTagName获取的元素)具有length属性，
+    //并且可以通过0、1、2…下标来访问其中的元素，但是没有Array中的push、pop等方法。
+    //我们可以利用call、apply来将其转化为真正的数组这样便可以方便地使用数组方法了。
+    let arrayLike = {
+      0: "qianlong",
+      1: "ziqi",
+      2: "qianduan",
+      length: 3,
+    };
+
+    let fakeArr = Array.prototype.slice.call(arrayLike);
+
+    //数组追加
+    let arr1 = [1, 2, 3];
+    let arr2 = [4, 5, 6];
+    console.log(Array.push.apply(arr1, arr2));
     //https://qianlongo.github.io/2016/04/26/js%E4%B8%ADcall%E3%80%81apply%E3%80%81bind%E9%82%A3%E4%BA%9B%E4%BA%8B/#more
   </script>
 </html>
