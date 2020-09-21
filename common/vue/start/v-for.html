@@ -1,0 +1,54 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-09-09 09:27:33
+ * @LastEditTime: 2020-09-10 14:09:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /commonFunction/common/vue/start/v-for.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <div v-for="item in getList">
+        {{item.name}}
+      </input>我是第{{item.name}}个元素
+      </div>
+      <button @click="deleteData">删除第二个元素</button>
+      <span></span>
+    </div>
+</body>
+<script>
+  new Vue({
+    el:'#app',
+    data(){
+      return {
+        arr:[
+          {name:'张三',visible:false},
+          {name:'李四',visible:false},
+          {name:'王五',visible:true},
+          {name:'赵六',visible:false},
+          {name:'马七',visible:true},
+        ]
+      }
+    },
+    methods:{
+      deleteData(){
+        this.arr.splice(1,1)
+      }
+    },
+    computed:{
+      getList() {
+        return this.arr.filter(item => item.visible)
+      }
+    }
+  })
+
+</script>
+</html>
