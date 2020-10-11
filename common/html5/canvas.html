@@ -1,0 +1,105 @@
+<!--
+ * @Author: your name
+ * @Date: 2020-09-08 15:58:08
+ * @LastEditTime: 2020-09-08 20:13:29
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Editanvas
+ * @FilePath: /commonFunction/common/html5/canvas.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>c</title>
+</head>
+<body>
+  <p>Image to use:</p>
+  <img id="scream" src="./images/gx.jpg" alt="The Scream" width="220" height="277"><p>Canvas:</p>
+  <canvas id="myCanvas" width="250" height="300" style="border:1px solid #d3d3d3;">
+  <!-- <canvas id="myCanvas" width="200" height="100" style="border: 1px solid #000000;"></canvas> -->
+</body>
+<script>
+  //html5<canvas>元素用于图形的绘制,通过脚本(通常是javascript)来完成
+  // canvas标签只是图形容器,必须使用脚本来绘制图形
+  // var c = document.getElementById('myCanvas');
+  // var ctx = c.getContext('2d');
+  // ctx.fillStyle = '#FF0000';
+  // ctx.fillRect(0,0,150,75)
+
+  // canvas路径
+  //在canvas上画线,我们将使用以下两种方法
+  //1.moveTo(x,y) 定义线条开始坐标
+  //2.lineTo(x,y) 定义心跳结束做标
+  // var c=document.getElementById("myCanvas");
+  // var ctx=c.getContext("2d");
+  // ctx.moveTo(0,0);
+  // ctx.lineTo(200,100);
+  // ctx.stroke();
+
+  // 在canvas中绘制圆形
+  // var c=document.getElementById("myCanvas");
+  // var ctx=c.getContext("2d");
+  // ctx.beginPath();
+  // ctx.arc(95,50,40,0,2*Math.PI);
+  // ctx.stroke();
+
+  // canvas-文本
+  // 使用canvas绘制文本,重要的属性和方法如下:
+  // font-定义字体
+  // fillText(text,x,y)--在canvas上绘制实心的文本
+  // strokeText(text,x,y)--在canvas上绘制空心的文本
+  // 使用Arial字体在画布上绘制一个高30px的文字(实心)
+  // var c=document.getElementById("myCanvas");
+  // var ctx=c.getContext("2d");
+  // ctx.font="30px Arial";
+  // ctx.fillText("Hello World",10,50);
+
+  // 使用Arial字体在画布上绘制一个高30px的文字(空心)
+  // var c=document.getElementById("myCanvas");
+  // var ctx=c.getContext("2d");
+  // ctx.font="30px Arial";
+  // ctx.strokeText("Hello World",10,50);
+
+  //canvas--渐变
+  // 渐变可以填充在矩形,圆形,线条,文本等等,各种形状可以自己定义不同的颜色,以下有两种不同的方式来设置canvas的渐变
+
+  // createLinearGradient(x,y,x1,y1)---创建线条渐变
+  // createRadialGradient(x,y,r,x1,y1,r1)---创建一个径向/圆渐变
+  // var c=document.getElementById("myCanvas");
+  // var ctx=c.getContext("2d");
+    
+  // // 创建渐变
+  // var grd=ctx.createLinearGradient(0,0,200,0);
+  // grd.addColorStop(0,"red");
+  // grd.addColorStop(1,"white");
+    
+  // // 填充渐变
+  // ctx.fillStyle=grd;
+  // ctx.fillRect(10,10,150,80);
+
+  // 径向填充
+
+  // var c=document.getElementById("myCanvas");
+  // var ctx=c.getContext("2d");
+    
+  // // 创建渐变
+  // var grd=ctx.createRadialGradient(75,50,5,90,60,100);
+  // grd.addColorStop(0,"red");
+  // grd.addColorStop(1,"white");
+    
+  // // 填充渐变
+  // ctx.fillStyle=grd;
+  // ctx.fillRect(10,10,150,80);
+
+
+  // canvas--图像
+  var c =document.getElementById("myCanvas");
+  var ctx =c.getContext("2d");
+  var img=document.getElementById("scream");
+
+  img.onload = function() {
+  	ctx.drawImage(img,20,20);
+  } 
+</script>
+</html>
