@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-10-26 20:16:26
- * @LastEditTime: 2020-10-31 16:41:54
+ * @LastEditTime: 2020-11-05 20:16:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /official-accounts/src/app/modules/payCallBack/payCallBack.component.html
@@ -139,20 +139,53 @@
     <div class="payPage">
         <img src="./pay-success.png" alt="">
         <p class="textInfo">支付成功</p>
-        <button id="toOrder" class="btn detail">返回门诊缴费</button>
+        <button id="toOrder" class="btn detail">返回</button>
     </div>
 
     <script>
     window.onload=function(){
+        var vConsole = new VConsole();
+          //获取返回页面参数
+        function getQueryString(name) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == name) {
+                    return pair[1];
+                }
+            }
+            return null;
+        };
+        //获取参数
+        var sub_mch_id = getQueryString("sub_mch_id"); //特约商户号
+        console.log("sub_mch_id is " + sub_mch_id)
+        var out_trade_no = getQueryString("out_trade_no"); //商户订单号
+        console.log("out_trade_no is " + out_trade_no)
+        var check_code = getQueryString("check_code"); //md5 校验码
+        console.log("check_code is " + check_code)
 
-      var vConsole = new VConsole();
+        var jumpCode =  out_trade_no.slice(0,3);
+        console.log(jumpCode)
+        var jumpUrl = '';
+        switch(jumpCode){
+            case 'PRE':
+            jumpUrl = 'https://weserver-hhyy.swifthealth.cn/#/pay'; //门诊缴费
+            break;
+            case 'REG':
+            jumpUrl = 'https://weserver-hhyy.swifthealth.cn/#/convenient/history';  //处方历史记录
+            break;
+            case 'FRE':
+            jumpUrl = 'https://weserver-hhyy.swifthealth.cn/#/drug-order-logistics';  //配送订单
+            break;
+        }
       var initData ={action:'onIframeReady',displayStyle:'SHOW_CUSTOM_PAGE'};
-
       var initPostData = JSON.stringify(initData);
-
+      console.log(jumpUrl,'初始跳转')
       parent.postMessage(initPostData,'https://payapp.weixin.qq.com');
       document.querySelector('.btn').onclick = function(e) {
-        var mchData = {action:'jumpOut',jumpOutUrl:'https://weserver-hhyy.swifthealth.cn/#/pay?page=home'};
+          console.log(jumpUrl,'点击跳转')
+        var mchData = {action:'jumpOut',jumpOutUrl:jumpUrl};
         var postData = JSON.stringify(mchData);
         parent.postMessage(postData,'https://payapp.weixin.qq.com')
       }
